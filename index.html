@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#3ec1f5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mr. Michael">
+<title>Mr. Michael Fakhry</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@500;600;800&display=swap">
+<style>
+:root{
+  --ink:#3a1f6e;--muted:#6b5a8e;--bg:#eaf7ff;--card:#ffffff;--field:#f5f9ff;--line:#cfe2f3;
+  --sky:#3ec1f5;--sun:#ffb703;--sunD:#c97800;--berry:#ff3d71;--berryD:#b3174a;
+  --mint:#14b8a6;--mintD:#0b7a6f;--grape:#7b2ff7;--grapeD:#4c1aa8;--ok:#22b14c;--okD:#14803a;
+  --heroTop:#3ec1f5;--heroBot:#bdeeff;
+  color-scheme:light;box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ink:#f1eaff;--muted:#b9a8e0;--bg:#150f27;--card:#231a3d;--field:#1b1432;--line:#3a2e5c;
+  --heroTop:#2a1f55;--heroBot:#150f27;color-scheme:dark}}
+:root[data-theme="dark"]{--ink:#f1eaff;--muted:#b9a8e0;--bg:#150f27;--card:#231a3d;--field:#1b1432;--line:#3a2e5c;--heroTop:#2a1f55;--heroBot:#150f27;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--ink);font-family:"Baloo Bhaijaan 2",Tahoma,"Segoe UI",sans-serif;font-weight:600;font-size:17px;line-height:1.5;-webkit-tap-highlight-color:transparent}
+body.noscroll{overflow:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:4px solid var(--grape);outline-offset:3px}
+[hidden]{display:none!important}
+.wrap{max-width:640px;margin:0 auto;padding:0 16px 120px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;text-align:center;padding:34px 16px 26px;background:linear-gradient(var(--heroTop),var(--heroBot));border-radius:0 0 46px 46px;overflow:hidden}
+.hero:before{content:"";position:absolute;top:-150px;left:50%;width:520px;height:300px;margin-left:-260px;border-radius:50%;border:14px solid rgba(255,255,255,.22);pointer-events:none}
+.avatar{position:relative;display:block;margin:12px auto 0;width:136px;height:136px;padding:0;border:0;border-radius:50%;background:#fff;
+  box-shadow:0 0 0 6px #fff,0 0 0 13px var(--sun),0 0 0 20px var(--berry),0 0 0 27px var(--grape),0 14px 0 27px rgba(58,31,110,.18)}
+.avatar img{display:block;width:100%;height:100%;border-radius:50%;object-fit:cover}
+.avatar:active{transform:scale(.96)}
+.tname{margin:40px 0 0;font-size:40px;line-height:1.15;font-weight:800;color:#3a1f6e;-webkit-text-stroke:7px #fff;paint-order:stroke fill}
+.ttitle{display:inline-block;margin:8px 0 0;padding:0 18px;border-radius:20px;background:var(--grape);color:#fff;font-size:17px;box-shadow:0 4px 0 var(--grapeD)}
+.hello{margin:12px 0 0;font-size:18px;color:#3a1f6e}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hello{color:var(--ink)}}
+
+/* ---------- stages ---------- */
+.stages{display:flex;gap:10px;overflow-x:auto;padding:22px 2px 10px;scrollbar-width:none}
+.stages::-webkit-scrollbar{display:none}
+.chip{flex:none;border:3px solid var(--line);background:var(--card);border-radius:22px;padding:2px 18px;font-weight:800;font-size:17px;box-shadow:0 4px 0 var(--line)}
+.chip[aria-pressed="true"]{background:var(--sun);border-color:#fff;color:#3a1f6e;box-shadow:0 4px 0 var(--sunD)}
+
+/* ---------- lessons ---------- */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 14px;margin-top:10px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;min-height:190px;padding:20px 10px 14px;border:4px solid var(--c);border-radius:28px;background:var(--card);box-shadow:0 8px 0 var(--d)}
+.tile:active{transform:translateY(5px);box-shadow:0 3px 0 var(--d)}
+.emo{display:grid;place-items:center;width:78px;height:78px;border-radius:50%;background:var(--c);font-size:42px;box-shadow:inset 0 -6px 0 rgba(0,0,0,.15);margin-bottom:6px}
+.tt{font-size:18px;font-weight:800;line-height:1.3}
+.tm{font-size:14px;color:var(--muted)}
+.tag{position:absolute;top:-14px;inset-inline-start:-6px;border:3px solid #fff;border-radius:16px;padding:0 10px;font-size:15px;font-weight:800;color:#fff;background:var(--berry);box-shadow:0 3px 0 var(--berryD)}
+.tag.open{background:var(--ok);box-shadow:0 3px 0 var(--okD)}
+.tag.free{background:var(--mint);box-shadow:0 3px 0 var(--mintD)}
+.empty{grid-column:1/-1;text-align:center;padding:40px 16px;border:3px dashed var(--line);border-radius:28px;color:var(--muted)}
+.empty b{display:block;font-size:44px}
+
+.codeBtn{position:fixed;z-index:20;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));border:4px solid #fff;border-radius:30px;padding:4px 26px;background:var(--grape);color:#fff;font-size:19px;font-weight:800;box-shadow:0 6px 0 var(--grapeD),0 10px 24px rgba(58,31,110,.3);white-space:nowrap}
+.codeBtn:active{transform:translateX(-50%) translateY(4px);box-shadow:0 2px 0 var(--grapeD)}
+
+/* ---------- buttons & fields ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:3px solid transparent;border-radius:18px;padding:4px 16px;font-weight:800;background:var(--field);color:var(--ink);box-shadow:0 4px 0 var(--line)}
+.btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--line)}
+.btn.primary{background:var(--grape);color:#fff;box-shadow:0 4px 0 var(--grapeD)}
+.btn.wa{background:#25d366;color:#08361b;box-shadow:0 4px 0 #128c4a}
+.btn.danger{background:transparent;color:var(--berry);border-color:var(--berry);box-shadow:none}
+.btn.sm{padding:0 12px;font-size:15px;border-radius:14px}
+.btn.block{display:flex;width:100%;font-size:19px;padding:8px 16px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+label.f{display:block;margin:12px 0 0;font-size:15px;color:var(--muted)}
+.in{display:block;width:100%;margin-top:4px;border:3px solid var(--line);border-radius:16px;background:var(--field);padding:6px 12px;font-size:17px}
+.in:focus{border-color:var(--grape);outline:none}
+.err{color:var(--berry);font-size:15px;min-height:1.5em;margin:6px 0 0}
+.hint{font-size:14px;color:var(--muted);margin:6px 0 0}
+.check{display:flex;align-items:center;gap:8px;margin-top:12px}
+.check input{width:22px;height:22px;accent-color:var(--grape)}
+
+/* ---------- sheet ---------- */
+.sheet{position:fixed;inset:0;z-index:40;display:flex;align-items:flex-end;justify-content:center;background:rgba(21,15,39,.55)}
+.sheetBox{width:100%;max-width:560px;max-height:92vh;overflow-y:auto;background:var(--card);border-radius:30px 30px 0 0;padding:18px 18px calc(24px + env(safe-area-inset-bottom,0px));animation:up .22s ease-out}
+@media (min-width:700px){.sheet{align-items:center}.sheetBox{border-radius:30px}}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@media (prefers-reduced-motion:reduce){.sheetBox{animation:none}}
+.sheetHead{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.sheetHead h2{flex:1;margin:0;font-size:23px;line-height:1.3}
+.x{border:0;background:var(--field);width:40px;height:40px;border-radius:50%;font-size:20px;flex:none}
+.price{display:inline-block;margin:2px 0 10px;padding:0 16px;border-radius:18px;background:var(--sun);color:#3a1f6e;font-size:22px;font-weight:800;box-shadow:0 4px 0 var(--sunD)}
+.steps{list-style:none;margin:6px 0 0;padding:0;counter-reset:s}
+.steps>li{position:relative;counter-increment:s;padding:0 48px 18px 0;border-inline-start:0}
+.steps>li:before{content:counter(s);position:absolute;right:0;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--berry);color:#fff;font-weight:800;box-shadow:0 3px 0 var(--berryD)}
+.steps>li:not(:last-child):after{content:"";position:absolute;right:16px;top:42px;bottom:4px;border-right:3px dotted var(--line)}
+.steps h3{margin:2px 0 6px;font-size:19px}
+.pay{display:flex;align-items:center;gap:10px;margin:8px 0;padding:10px 12px;border-radius:18px;border:3px solid var(--line);background:var(--field)}
+.pay .pl{flex:1;min-width:0}
+.pay .pn{display:block;font-size:14px;color:var(--muted)}
+.pay .pv{display:block;font-size:20px;font-weight:800;direction:ltr;text-align:right;overflow-wrap:anywhere}
+.pay.ip{border-color:#7b2ff7}.pay.vc{border-color:#e60000}
+.radios{display:flex;gap:8px;margin-top:4px}
+.radios label{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:3px solid var(--line);border-radius:16px;padding:6px;background:var(--field)}
+.radios input{accent-color:var(--grape)}
+.radios label:has(input:checked){border-color:var(--grape)}
+.codeIn{direction:ltr;text-align:center;font-size:24px;letter-spacing:3px;font-weight:800;text-transform:uppercase}
+
+/* ---------- viewer ---------- */
+.viewer{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;background:var(--bg)}
+.vbar{display:flex;align-items:center;gap:10px;padding:calc(8px + env(safe-area-inset-top,0px)) 12px 8px;background:var(--grape);color:#fff}
+.vbar .btn{background:#fff;color:var(--grape);box-shadow:0 3px 0 var(--grapeD)}
+.vbar span{flex:1;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.viewer iframe{flex:1;width:100%;border:0;background:#fff}
+
+/* ---------- admin ---------- */
+.admin{position:fixed;inset:0;z-index:30;overflow-y:auto;background:var(--bg)}
+.abar{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:8px;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 10px;background:var(--ink);color:var(--bg)}
+.abar h2{flex:1;margin:0;font-size:20px}
+.abar .btn{box-shadow:none}
+.badge{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:12px;background:var(--berry);color:#fff;font-size:14px;padding:0 6px}
+.atabs{display:flex;gap:8px;overflow-x:auto;padding:14px 14px 4px;max-width:720px;margin:0 auto;scrollbar-width:none}
+.atabs button{flex:none;border:3px solid var(--line);background:var(--card);border-radius:18px;padding:2px 16px;font-weight:800}
+.atabs button[aria-selected="true"]{background:var(--sun);border-color:#fff;color:#3a1f6e;box-shadow:0 4px 0 var(--sunD)}
+.apanel{max-width:720px;margin:0 auto;padding:10px 14px 60px}
+.box{background:var(--card);border:3px solid var(--line);border-radius:24px;padding:14px 16px;margin:14px 0}
+.box h3{margin:0 0 4px;font-size:19px}
+.item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:2px dashed var(--line)}
+.item:last-child{border-bottom:0}
+.item .ie{flex:none;display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--c,var(--sun));font-size:26px}
+.item .ib{flex:1;min-width:0}
+.item .ib b{display:block;line-height:1.3;overflow-wrap:anywhere}
+.item .ib small{color:var(--muted);font-size:14px}
+.acts{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+@media (max-width:560px){.item{flex-wrap:wrap}.item .acts{flex-basis:100%;justify-content:flex-start}}
+.code{direction:ltr;display:inline-block;white-space:nowrap;font-weight:800;letter-spacing:2px;font-size:19px;font-variant-numeric:tabular-nums}
+.revoked{opacity:.45;text-decoration:line-through}
+.swatches{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.swatches button{width:38px;height:38px;border-radius:50%;border:4px solid #fff;background:var(--c);box-shadow:0 0 0 2px var(--line)}
+.swatches button[aria-pressed="true"]{box-shadow:0 0 0 3px var(--ink)}
+.photoRow{display:flex;align-items:center;gap:14px}
+.photoRow img{width:84px;height:84px;border-radius:50%;object-fit:cover;border:4px solid var(--sun)}
+.newcodes{margin-top:12px;padding:12px;border-radius:18px;background:var(--field);border:3px dashed var(--ok)}
+.prog{font-size:15px;color:var(--muted)}
+
+/* ---------- toast ---------- */
+.toast{position:fixed;z-index:60;left:14px;right:14px;bottom:calc(84px + env(safe-area-inset-bottom,0px));margin:0 auto;max-width:520px;background:#3a1f6e;color:#fff;border-radius:18px;padding:10px 16px;text-align:center;font-size:16px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+@media (max-width:360px){.grid{gap:16px 10px}.tname{font-size:32px}.emo{width:64px;height:64px;font-size:34px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <button class="avatar" id="avatarBtn" type="button" aria-label="صورة المدرس"><img id="tPhoto" alt=""></button>
+  <h1 class="tname" id="tName" dir="auto"></h1>
+  <span class="ttitle" id="tTitle" hidden></span>
+  <p class="hello" id="hello" hidden></p>
+</header>
+
+<div class="wrap">
+  <nav class="stages" id="stages" aria-label="المراحل"></nav>
+  <main class="grid" id="lessons"></main>
+</div>
+
+<button class="codeBtn" id="codeBtn" type="button">🔑 عندي كود تفعيل</button>
+
+<div class="sheet" id="sheet" hidden><div class="sheetBox" id="sheetBox" role="dialog" aria-modal="true"></div></div>
+
+<div class="viewer" id="viewer" hidden>
+  <div class="vbar"><button class="btn sm" id="vBack" type="button">→ رجوع</button><span id="vTitle"></span></div>
+  <iframe id="vFrame" title="الدرس" sandbox="allow-scripts allow-forms allow-modals allow-popups allow-downloads"></iframe>
+</div>
+
+<div class="admin" id="admin" hidden>
+  <div class="abar">
+    <h2>لوحة المدرس</h2>
+    <button class="btn sm primary" id="pubBtn" type="button">نشر <span class="badge" id="pubCount">0</span></button>
+    <button class="btn sm" id="adminExit" type="button">خروج</button>
+  </div>
+  <div class="atabs" role="tablist" id="atabs">
+    <button role="tab" data-t="lessons">📚 الدروس</button>
+    <button role="tab" data-t="codes">🔑 الأكواد والطلاب</button>
+    <button role="tab" data-t="stages">🎓 المراحل</button>
+    <button role="tab" data-t="settings">⚙️ الإعدادات</button>
+  </div>
+  <div class="apanel" id="apanel"></div>
+</div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+"use strict";
+/* ================= helpers ================= */
+const $=s=>document.querySelector(s);
+const TE=new TextEncoder(),TD=new TextDecoder();
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const b64=u8=>{let s="";for(let i=0;i<u8.length;i+=32768)s+=String.fromCharCode.apply(null,u8.subarray(i,i+32768));return btoa(s)};
+const unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const rnd=n=>crypto.getRandomValues(new Uint8Array(n));
+const uid=p=>p+Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const digits=s=>String(s||"").replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[۰-۹]/g,d=>"۰۱۲۳۴۵۶۷۸۹".indexOf(d));
+function waNum(p){p=digits(p).replace(/\D/g,"");if(p.startsWith("00"))p=p.slice(2);if(p.startsWith("0"))p="2"+p;return p}
+let toastT;
+function toast(t,ms){const e=$("#toast");e.textContent=t;e.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>e.hidden=true,ms||3800)}
+async function copy(t){try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement("textarea");a.value=t;document.body.appendChild(a);a.select();document.execCommand("copy");a.remove()}toast("اتنسخ ✔")}
+
+/* ================= crypto (AES-GCM + PBKDF2) ================= */
+async function seal(raw,bytes){const iv=rnd(12);const k=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["encrypt"]);const ct=new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM",iv},k,bytes));const o=new Uint8Array(12+ct.length);o.set(iv);o.set(ct,12);return b64(o)}
+async function unseal(raw,str){const d=unb64(str);const k=await crypto.subtle.importKey("raw",raw,"AES-GCM",false,["decrypt"]);return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:d.subarray(0,12)},k,d.subarray(12)))}
+async function pbkdf2(pass,salt,iter,bits){const base=await crypto.subtle.importKey("raw",TE.encode(pass),"PBKDF2",false,["deriveBits"]);return new Uint8Array(await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt,iterations:iter},base,bits))}
+const CODE_ABC="ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+const normCode=s=>digits(s).toUpperCase().replace(/[^A-Z0-9]/g,"");
+const fmtCode=c=>c.slice(0,5)+"-"+c.slice(5);
+function makeCode(){let c="";while(c.length<10){for(const b of rnd(16)){if(b<248&&c.length<10)c+=CODE_ABC[b%31]}}return c}
+async function deriveCode(code){const bits=await pbkdf2(normCode(code),TE.encode("mf-code-v1"),150000,384);return{key:bits.slice(0,32),id:b64(bits.slice(32,44))}}
+
+/* ================= device lock =================
+   كل جهاز بيعمل مفتاح خاص "مش قابل للنسخ" (non-extractable) محفوظ في المتصفح.
+   كود التفعيل بيتعمل لمفتاح الجهاز ده بالذات، فلو اتبعت لجهاز تاني مش هيفتح.
+   رقم الجهاز كمان متسجل في ملف تعريف ارتباط (cookie) عشان نعرف لو بيانات المتصفح اتمسحت. */
+let DEV=null,DEV_RESET=false;
+const b64u=u8=>b64(u8).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const unb64u=s=>unb64(s.replace(/-/g,"+").replace(/_/g,"/")+"===".slice((s.length+3)%4));
+function idbOpen(){return new Promise((res,rej)=>{const r=indexedDB.open("mf-device",1);r.onupgradeneeded=()=>r.result.createObjectStore("kv");r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+async function idb(mode,fn){const db=await idbOpen();return new Promise((res,rej)=>{const tx=db.transaction("kv",mode),rq=fn(tx.objectStore("kv"));tx.oncomplete=()=>res(rq&&rq.result);tx.onerror=()=>rej(tx.error)})}
+function getCookie(n){const m=document.cookie.match(new RegExp("(?:^|; )"+n+"=([^;]*)"));return m?decodeURIComponent(m[1]):""}
+function setCookie(n,v){document.cookie=`${n}=${encodeURIComponent(v)}; max-age=${60*60*24*400}; path=/; SameSite=Lax${location.protocol==="https:"?"; Secure":""}`}
+async function shortId(pub){const h=new Uint8Array(await crypto.subtle.digest("SHA-256",TE.encode(pub)));let s="";for(let i=0;i<8;i++)s+=CODE_ABC[h[i]%31];return s.slice(0,4)+"-"+s.slice(4)}
+async function getDevice(){
+  if(DEV)return DEV;
+  let d=null;try{d=await idb("readonly",st=>st.get("dev"))}catch(e){}
+  if(!d||!d.priv||!d.aes){
+    const ec=await crypto.subtle.generateKey({name:"ECDH",namedCurve:"P-256"},false,["deriveBits"]);
+    const aes=await crypto.subtle.generateKey({name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
+    const pub=b64u(new Uint8Array(await crypto.subtle.exportKey("raw",ec.publicKey)));
+    d={priv:ec.privateKey,aes,pub,id:await shortId(pub),at:Date.now()};
+    let saved=false;try{await idb("readwrite",st=>st.put(d,"dev"));saved=!!(await idb("readonly",st=>st.get("dev")))}catch(e){}
+    d.volatile=!saved;
+    const old=getCookie("mf_device")||LS.get("mf_device","");
+    if(old&&old!==d.id){DEV_RESET=Object.keys(LS.get("mf_keys2",{})).length>0;LS.set("mf_keys2",{})}
+  }
+  setCookie("mf_device",d.id);LS.set("mf_device",d.id);
+  if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+  return DEV=d;
+}
+async function devSeal(bytes){const dv=await getDevice();const iv=rnd(12);const ct=new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM",iv},dv.aes,bytes));const o=new Uint8Array(12+ct.length);o.set(iv);o.set(ct,12);return b64(o)}
+async function devUnseal(str){const dv=await getDevice();const d=unb64(str);return new Uint8Array(await crypto.subtle.decrypt({name:"AES-GCM",iv:d.subarray(0,12)},dv.aes,d.subarray(12)))}
+async function bindKey(shared,ck){const m=new Uint8Array(shared.length+ck.length);m.set(shared);m.set(ck,shared.length);return new Uint8Array(await crypto.subtle.digest("SHA-256",m))}
+const ecImport=raw=>crypto.subtle.importKey("raw",unb64u(raw),{name:"ECDH",namedCurve:"P-256"},true,[]);
+/* المدرس: يعمل كود مربوط بجهاز الطالب */
+async function makeDeviceCode(pub,map){
+  const devPub=await ecImport(pub);
+  const eph=await crypto.subtle.generateKey({name:"ECDH",namedCurve:"P-256"},true,["deriveBits"]);
+  const shared=new Uint8Array(await crypto.subtle.deriveBits({name:"ECDH",public:devPub},eph.privateKey,256));
+  const code=makeCode(),{key,id}=await deriveCode(code);
+  const e=b64u(new Uint8Array(await crypto.subtle.exportKey("raw",eph.publicKey)));
+  return {code,id,entry:{e,d:await seal(await bindKey(shared,key),TE.encode(JSON.stringify(map)))}};
+}
+/* الطالب: يفك الكود بمفتاح جهازه */
+async function openDeviceCode(entry,ck){
+  const dv=await getDevice();
+  const shared=new Uint8Array(await crypto.subtle.deriveBits({name:"ECDH",public:await ecImport(entry.e)},dv.priv,256));
+  return JSON.parse(TD.decode(await unseal(await bindKey(shared,ck),entry.d)));
+}
+const reqTag=(lid)=>"#MF|"+(lid||"")+"|"+(DEV?DEV.pub:"");
+
+/* ================= state ================= */
+const COLORS=[["#ff3d71","#b3174a"],["#ff9f1c","#c97800"],["#14b8a6","#0b7a6f"],["#7b2ff7","#4c1aa8"],["#3a86ff","#1d55c4"],["#22b14c","#14803a"],["#ef233c","#a4161a"]];
+const DEF=()=>({v:1,teacher:{name:"Mr. Michael Fakhry",title:"",photo:"",wa:"",instapay:"",instapayLink:"",vcash:"",note:""},stages:[],lessons:[],codes:{},vault:null,updated:0});
+let DATA=DEF(),ADMIN=null,PENDING={},DELETED=new Set(),DIRTY=false,STAGE="all",TAB="lessons";
+
+const myKeys=()=>LS.get("mf_keys2",{});
+const stageName=id=>(DATA.stages.find(s=>s.id===id)||{}).name||"";
+async function lessonKey(l){
+  if(l.free&&l.fk)return l.fk;
+  if(ADMIN&&ADMIN.v.keys[l.id])return ADMIN.v.keys[l.id];
+  const s=myKeys()[l.id];
+  if(s){try{return b64(await devUnseal(s))}catch(e){const k=myKeys();delete k[l.id];LS.set("mf_keys2",k);renderLessons();return false}}
+  return null;
+}
+const owned=l=>!!(l.free&&l.fk)||!!(ADMIN&&ADMIN.v.keys[l.id])||!!myKeys()[l.id];
+
+function avatarSrc(){
+  if(DATA.teacher.photo)return DATA.teacher.photo;
+  const ch=esc((DATA.teacher.name||"م").replace(/^(مستر|مس|أ\.|ا\.|Mr\.?|Mrs\.?|Ms\.?)\s*\/?\s*/i,"").trim().charAt(0)||"م");
+  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='#ffe27a'/><text x='50' y='68' text-anchor='middle' font-family='Tahoma' font-weight='bold' font-size='52' fill='#3a1f6e'>${ch}</text></svg>`);
+}
+
+/* ================= student view ================= */
+function renderHero(){
+  const t=DATA.teacher;$("#tPhoto").src=avatarSrc();$("#tName").textContent=t.name||"";
+  document.title=(t.name?t.name+" | ":"")+"الدروس";
+  const tt=$("#tTitle");tt.hidden=!t.title;tt.textContent=t.title||"";
+  const p=LS.get("mf_student",null),h=$("#hello");h.hidden=!(p&&p.name);if(p&&p.name)h.textContent="أهلاً يا "+p.name.split(" ")[0]+" 👋";
+}
+function renderStages(){
+  const el=$("#stages");
+  if(!DATA.stages.length){el.innerHTML="";return}
+  if(STAGE!=="all"&&!DATA.stages.some(s=>s.id===STAGE))STAGE="all";
+  el.innerHTML=[["all","كل الدروس"],...DATA.stages.map(s=>[s.id,s.name])].map(([id,n])=>`<button class="chip" type="button" data-s="${esc(id)}" aria-pressed="${STAGE===id}">${esc(n)}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{STAGE=b.dataset.s;renderStages();renderLessons()});
+}
+function renderLessons(){
+  const el=$("#lessons");
+  const list=DATA.lessons.filter(l=>STAGE==="all"||l.stage===STAGE);
+  if(!list.length){el.innerHTML=`<div class="empty"><b>📭</b>${DATA.lessons.length?"مفيش دروس في المرحلة دي لسه.":"لسه مفيش دروس هنا. المدرس هيضيفها قريب."}</div>`;return}
+  el.innerHTML=list.map(l=>{
+    const tag=owned(l)?(l.free?`<span class="tag free">مجاني</span>`:`<span class="tag open">✅ مفتوح</span>`):`<span class="tag">🔒 ${esc(l.price)} ج.م</span>`;
+    return `<button class="tile" type="button" data-id="${esc(l.id)}" style="--c:${esc(l.c||COLORS[0][0])};--d:${esc(l.d||COLORS[0][1])}">${tag}<span class="emo">${esc(l.emoji||"📘")}</span><span class="tt" dir="auto">${esc(l.title)}</span><span class="tm">${esc(stageName(l.stage))}</span></button>`;
+  }).join("");
+  el.querySelectorAll(".tile").forEach(b=>b.onclick=()=>{const l=DATA.lessons.find(x=>x.id===b.dataset.id);owned(l)?openLesson(l):buySheet(l)});
+}
+function renderAll(){renderHero();renderStages();renderLessons();if(!$("#admin").hidden)renderAdmin()}
+
+/* ---------- sheet ---------- */
+function sheet(title,body){
+  $("#sheetBox").innerHTML=`<div class="sheetHead"><h2>${title}</h2><button class="x" type="button" aria-label="إغلاق" id="sheetX">✕</button></div>${body}`;
+  $("#sheet").hidden=false;$("#sheetX").onclick=closeSheet;document.body.classList.add("noscroll");
+  const f=$("#sheetBox").querySelector("input:not([type=hidden]):not([type=checkbox]):not([type=radio])");if(f&&window.innerWidth>700)f.focus();
+}
+function closeSheet(){$("#sheet").hidden=true;if($("#viewer").hidden&&$("#admin").hidden)document.body.classList.remove("noscroll")}
+$("#sheet").addEventListener("click",e=>{if(e.target.id==="sheet")closeSheet()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("#sheet").hidden)closeSheet()});
+
+/* ---------- buy ---------- */
+function buySheet(l){
+  const t=DATA.teacher,p=LS.get("mf_student",{})||{};
+  let pays="";
+  if(t.instapay)pays+=`<div class="pay ip"><span class="pl"><span class="pn">إنستاباي InstaPay</span><span class="pv">${esc(t.instapay)}</span></span><button class="btn sm" type="button" data-copy="${esc(t.instapay)}">نسخ</button>${t.instapayLink?`<a class="btn sm primary" href="${esc(t.instapayLink)}" target="_blank" rel="noopener">ادفع</a>`:""}</div>`;
+  if(t.vcash)pays+=`<div class="pay vc"><span class="pl"><span class="pn">فودافون كاش Vodafone Cash</span><span class="pv">${esc(t.vcash)}</span></span><button class="btn sm" type="button" data-copy="${esc(t.vcash)}">نسخ</button></div>`;
+  if(!pays)pays=`<p class="hint">المدرس لسه ما ضافش طرق الدفع.</p>`;
+  const methods=[t.instapay&&["instapay","إنستاباي"],t.vcash&&["vcash","فودافون كاش"]].filter(Boolean);
+  const stOpts=DATA.stages.map(s=>`<option value="${esc(s.id)}" ${(p.stage||l.stage)===s.id?"selected":""}>${esc(s.name)}</option>`).join("");
+  sheet(esc(l.title),`
+    <span class="price">${esc(l.price)} ج.م</span>
+    <ol class="steps">
+      <li><h3>حوّل ثمن الدرس</h3>${pays}${t.note?`<p class="hint">${esc(t.note)}</p>`:""}</li>
+      <li><h3>اكتب بياناتك وابعت الطلب</h3>
+        <label class="f">اسم الطالب<input class="in" id="bName" autocomplete="name" value="${esc(p.name||"")}"></label>
+        <label class="f">رقم موبايل ولي الأمر<input class="in" id="bPhone" type="tel" inputmode="tel" dir="ltr" value="${esc(p.phone||"")}"></label>
+        ${stOpts?`<label class="f">المرحلة<select class="in" id="bStage">${stOpts}</select></label>`:""}
+        ${methods.length?`<div class="f" style="margin-top:12px;font-size:15px;color:var(--muted)">دفعت بإيه؟</div><div class="radios">${methods.map((m,i)=>`<label><input type="radio" name="bm" value="${m[0]}" ${i===0?"checked":""}>${m[1]}</label>`).join("")}</div>`:""}
+        <label class="f">الرقم أو الاسم اللي اتحوّل منه<input class="in" id="bFrom" dir="auto"></label>
+        ${devNote()}
+        <p class="err" id="bErr"></p>
+        <button class="btn wa block" type="button" id="bSend" ${t.wa?"":"disabled"}>ابعت الطلب على واتساب</button>
+        ${t.wa?`<p class="hint">ابعت مع الرسالة صورة (سكرين) من التحويل.</p>`:`<p class="hint">المدرس لسه ما حطش رقم واتساب.</p>`}
+      </li>
+      <li><h3>اكتب كود التفعيل</h3><p class="hint" style="margin-top:0">بعد ما المدرس يتأكد من التحويل هيبعتلك كود.</p>
+        <input class="in codeIn" id="bCode" placeholder="XXXXX-XXXXX" autocomplete="off" autocapitalize="characters" dir="ltr">
+        <p class="err" id="cErr"></p>
+        <button class="btn primary block" type="button" id="bRedeem">افتح الدرس</button>
+      </li>
+    </ol>`);
+  $("#sheetBox").querySelectorAll("[data-copy]").forEach(b=>b.onclick=()=>copy(b.dataset.copy));
+  $("#bSend").onclick=()=>sendRequest(l);
+  $("#bRedeem").onclick=()=>redeem($("#bCode").value,$("#cErr"),$("#bRedeem"));
+}
+function devNote(){
+  if(!DEV)return `<p class="hint">⚠️ المتصفح ده مش بيدعم قفل الجهاز. افتح الموقع من Chrome أو Safari.</p>`;
+  if(DEV.volatile)return `<p class="err">⚠️ المتصفح ده مش بيحفظ البيانات (غالباً وضع التصفح الخفي). افتح الموقع من متصفح عادي قبل ما تدفع.</p>`;
+  return `<p class="hint">🔐 الدرس هيشتغل على الجهاز ده بس (رقم الجهاز <b dir="ltr">${DEV.id}</b>). ابعت الطلب من نفس الموبايل اللي الطالب هيذاكر عليه.</p>`;
+}
+function sendRequest(l){
+  const name=$("#bName").value.trim(),phone=digits($("#bPhone").value).replace(/[^\d+]/g,""),from=$("#bFrom").value.trim(),err=$("#bErr");
+  const st=$("#bStage")?$("#bStage").value:l.stage,m=document.querySelector("input[name=bm]:checked");
+  if(name.length<2){err.textContent="اكتب اسم الطالب.";return}
+  if(phone.replace(/\D/g,"").length<10){err.textContent="اكتب رقم موبايل صحيح (11 رقم).";return}
+  if(!from){err.textContent="اكتب الرقم أو الاسم اللي اتحوّل منه عشان المدرس يلاقي التحويل.";return}
+  if(!DEV||DEV.volatile){err.textContent="افتح الموقع من متصفح عادي (مش التصفح الخفي) الأول.";return}
+  err.textContent="";
+  LS.set("mf_student",{name,phone,stage:st});
+  const rid="R-"+Math.random().toString(36).slice(2,6).toUpperCase();
+  const reqs=LS.get("mf_reqs",[]);reqs.unshift({rid,lesson:l.id,at:Date.now()});LS.set("mf_reqs",reqs.slice(0,30));
+  const msg=["📚 طلب شراء درس","الدرس: "+l.title,"السعر: "+l.price+" ج.م","","👤 اسم الطالب: "+name,stageName(st)?"🎓 المرحلة: "+stageName(st):"","📱 رقم ولي الأمر: "+phone,"💳 طريقة الدفع: "+(m?(m.value==="vcash"?"فودافون كاش":"إنستاباي"):"-"),"↩️ اتحوّل من: "+from,"🔖 رقم الطلب: "+rid,DEV?"🔐 رقم الجهاز: "+DEV.id:"","","(سيب السطر اللي جاي زي ما هو)",reqTag(l.id)].filter(x=>x!=="").join("\n");
+  window.open("https://wa.me/"+waNum(DATA.teacher.wa)+"?text="+encodeURIComponent(msg),"_blank");
+  renderHero();toast("بعد ما المدرس يبعتلك الكود اكتبه في الخطوة 3",5000);
+}
+function codeSheet(){
+  const mine=DATA.lessons.filter(owned).length;
+  sheet("🔑 تفعيل درس",`<p class="hint" style="margin-top:0">اكتب الكود اللي وصلك من المدرس.</p>
+    <input class="in codeIn" id="cCode" placeholder="XXXXX-XXXXX" autocomplete="off" autocapitalize="characters" dir="ltr">
+    <p class="err" id="cErr"></p><button class="btn primary block" type="button" id="cGo">افتح الدروس</button>
+    <div class="box"><h3>📱 جهازك</h3>${DEV?`<p style="margin:0">رقم الجهاز: <b dir="ltr">${DEV.id}</b></p>
+      <p class="hint">الأكواد بتشتغل على الجهاز ده بس. لو عايز كود لمرحلة كاملة، ابعت كود الجهاز للمستر.</p>
+      <button class="btn sm" type="button" id="cDev">نسخ كود الجهاز</button>`:devNote()}</div>
+    ${mine?`<div class="box"><h3>⬇️ دروسي بدون نت</h3><p class="hint" style="margin-top:0">نزّل دروسك على الموبايل عشان تفتح من غير إنترنت. هتفتح من التطبيق ده بس.</p>
+      <button class="btn sm primary" type="button" id="cDl">نزّل دروسي (${mine})</button></div>`:""}`);
+  $("#cGo").onclick=()=>redeem($("#cCode").value,$("#cErr"),$("#cGo"));
+  $("#cCode").onkeydown=e=>{if(e.key==="Enter")$("#cGo").click()};
+  if($("#cDev"))$("#cDev").onclick=()=>copy(`🔐 رقم الجهاز: ${DEV.id}\n${reqTag("")}`);
+  if($("#cDl"))$("#cDl").onclick=downloadMine;
+}
+async function downloadMine(){
+  const list=DATA.lessons.filter(owned);let ok=0;
+  for(const l of list){toast(`جاري التنزيل ${ok+1} من ${list.length}…`,30000);try{const r=await fetch(l.file+"?v="+(l.at||0));if(r.ok){await r.text();ok++}}catch(e){}}
+  toast(ok===list.length?"✔ دروسك اتنزلت على الجهاز. تقدر تفتحها من غير نت.":"اتنزل "+ok+" من "+list.length+". جرب تاني والنت شغال.",5000);
+}
+async function redeem(raw,errEl,btn){
+  const c=normCode(raw);
+  if(c.length!==10){errEl.textContent="الكود 10 حروف وأرقام، زي ABCDE-23456.";return}
+  btn.disabled=true;errEl.textContent="";const old=btn.textContent;btn.textContent="جاري التأكد…";
+  try{
+    const {key,id}=await deriveCode(c);
+    const entry=DATA.codes[id];
+    if(!entry||!entry.e){errEl.textContent="الكود ده مش شغال. لو المدرس لسه باعته، استنى دقيقتين وجرب تاني.";return}
+    let map;
+    try{map=await openDeviceCode(entry,key)}catch(x){errEl.textContent="الكود ده متعمل لجهاز تاني. كل كود بيشتغل على الجهاز اللي اتبعت منه الطلب بس.";return}
+    const keys=myKeys();for(const lid in map)keys[lid]=await devSeal(unb64(map[lid]));LS.set("mf_keys2",keys);
+    const names=DATA.lessons.filter(l=>map[l.id]).map(l=>l.title);
+    closeSheet();renderLessons();toast("اتفتح: "+(names.join("، ")||"الدرس")+" 🎉",5000);
+    if(names.length===1)openLesson(DATA.lessons.find(l=>map[l.id]));
+  }catch(e){errEl.textContent="حصلت مشكلة في التفعيل. جرب تاني."}
+  finally{btn.disabled=false;btn.textContent=old}
+}
+
+/* ---------- viewer ---------- */
+async function getLessonHtml(l,key){
+  let s=PENDING[l.file];
+  if(!s){const r=await fetch(l.file+"?v="+(l.at||0),{cache:"no-cache"});if(!r.ok)throw new Error("fetch "+r.status);s=(await r.text()).trim()}
+  return TD.decode(await unseal(unb64(key),s));
+}
+async function openLesson(l){
+  const key=await lessonKey(l);
+  if(key===false){toast("الدرس ده كان مفتوح على بيانات متصفح اتمسحت. اطلب كود جديد من المستر.",6000);buySheet(l);return}
+  if(!key){buySheet(l);return}
+  toast("جاري فتح الدرس…",20000);
+  try{
+    const html=await getLessonHtml(l,key);
+    $("#vTitle").textContent=l.title;$("#vFrame").srcdoc=html;$("#viewer").hidden=false;document.body.classList.add("noscroll");
+    history.pushState({viewer:1},"");$("#toast").hidden=true;
+  }catch(e){toast("الدرس ما فتحش. اتأكد من النت وجرب تاني.")}
+}
+function closeViewer(){$("#viewer").hidden=true;$("#vFrame").srcdoc="";if($("#admin").hidden)document.body.classList.remove("noscroll")}
+$("#vBack").onclick=()=>{if(history.state&&history.state.viewer)history.back();else closeViewer()};
+window.addEventListener("popstate",()=>{if(!$("#viewer").hidden)closeViewer()});
+
+/* ================= teacher ================= */
+$("#avatarBtn").onclick=()=>{if(ADMIN){openAdmin();return}loginSheet()};
+$("#codeBtn").onclick=codeSheet;
+
+function loginSheet(){
+  if(!DATA.vault){
+    sheet("دخول المدرس لأول مرة",`<p class="hint" style="margin-top:0">اختار كلمة سر للوحة المدرس. احفظها كويس: من غيرها مش هتقدر تعمل أكواد جديدة.</p>
+      <label class="f">كلمة السر<input class="in" type="password" id="lp1" autocomplete="new-password"></label>
+      <label class="f">اكتبها تاني<input class="in" type="password" id="lp2" autocomplete="new-password"></label>
+      <p class="err" id="lErr"></p><button class="btn primary block" type="button" id="lGo">ابدأ</button>`);
+    $("#lGo").onclick=async()=>{const a=$("#lp1").value,b=$("#lp2").value;
+      if(a.length<6){$("#lErr").textContent="كلمة السر لازم تكون 6 حروف على الأقل.";return}
+      if(a!==b){$("#lErr").textContent="الكلمتين مش زي بعض.";return}
+      $("#lGo").disabled=true;const salt=rnd(16);
+      ADMIN={key:await pbkdf2(a,salt,200000,256),salt:b64(salt),v:{keys:{},codes:[]}};
+      await saveVault();closeSheet();openAdmin();};
+    return;
+  }
+  sheet("دخول المدرس",`<label class="f">كلمة السر<input class="in" type="password" id="lp" autocomplete="current-password"></label>
+    <p class="err" id="lErr"></p><button class="btn primary block" type="button" id="lGo">دخول</button>`);
+  const go=async()=>{const btn=$("#lGo");btn.disabled=true;btn.textContent="جاري الدخول…";
+    try{const key=await pbkdf2($("#lp").value,unb64(DATA.vault.s),200000,256);
+      const v=JSON.parse(TD.decode(await unseal(key,DATA.vault.d)));v.keys=v.keys||{};v.codes=v.codes||[];
+      ADMIN={key,salt:DATA.vault.s,v};closeSheet();openAdmin();renderLessons();
+    }catch(e){$("#lErr").textContent="كلمة السر غلط.";btn.disabled=false;btn.textContent="دخول"}};
+  $("#lGo").onclick=go;$("#lp").onkeydown=e=>{if(e.key==="Enter")go()};
+}
+async function saveVault(){DATA.vault={s:ADMIN.salt,d:await seal(ADMIN.key,TE.encode(JSON.stringify(ADMIN.v)))};markDirty()}
+function markDirty(){DIRTY=true;updatePub()}
+const pendingCount=()=>Object.keys(PENDING).length+DELETED.size+(DIRTY?1:0);
+function updatePub(){const n=pendingCount();$("#pubCount").textContent=n;$("#pubBtn").disabled=!n}
+window.addEventListener("beforeunload",e=>{if(pendingCount()){e.preventDefault();e.returnValue=""}});
+
+function openAdmin(){$("#admin").hidden=false;document.body.classList.add("noscroll");renderAdmin()}
+$("#adminExit").onclick=()=>{
+  if(pendingCount()&&!confirm("في تغييرات لسه ما اتنشرتش. لو قفلت الصفحة هتضيع. تخرج برضه؟"))return;
+  $("#admin").hidden=true;document.body.classList.remove("noscroll");renderAll();
+};
+$("#atabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{TAB=b.dataset.t;renderAdmin()});
+$("#pubBtn").onclick=publish;
+
+function renderAdmin(){
+  $("#atabs").querySelectorAll("button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===TAB));
+  ({lessons:tabLessons,codes:tabCodes,stages:tabStages,settings:tabSettings})[TAB]();updatePub();
+}
+
+/* ---------- lessons tab ---------- */
+function tabLessons(){
+  const P=$("#apanel");
+  P.innerHTML=`<div class="box"><button class="btn primary block" type="button" id="addL">＋ إضافة درس جديد (ملف HTML)</button>
+    ${DATA.lessons.length?DATA.lessons.map(l=>`<div class="item"><span class="ie" style="--c:${esc(l.c)}">${esc(l.emoji||"📘")}</span>
+      <span class="ib"><b>${esc(l.title)}</b><small>${esc(stageName(l.stage)||"بدون مرحلة")} – ${l.free?"مجاني":esc(l.price)+" ج.م"}${PENDING[l.file]?" – لم يُنشر بعد":""}</small></span>
+      <span class="acts"><button class="btn sm" type="button" data-a="view" data-id="${l.id}">فتح</button><button class="btn sm" type="button" data-a="edit" data-id="${l.id}">تعديل</button><button class="btn sm danger" type="button" data-a="del" data-id="${l.id}">حذف</button></span></div>`).join("")
+    :`<p class="hint">مفيش دروس. اضغط "إضافة درس جديد" وارفع ملف الدرس.</p>`}</div>`;
+  $("#addL").onclick=()=>lessonForm();
+  P.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{const l=DATA.lessons.find(x=>x.id===b.dataset.id);
+    if(b.dataset.a==="view")openLesson(l);else if(b.dataset.a==="edit")lessonForm(l);else delLesson(l)});
+}
+function lessonForm(l){
+  const isNew=!l;l=l||{title:"",stage:(DATA.stages[0]||{}).id||"",price:50,emoji:"📘",c:COLORS[0][0],d:COLORS[0][1],free:false};
+  let col=[l.c,l.d];
+  sheet(isNew?"درس جديد":"تعديل الدرس",`
+    <label class="f">اسم الدرس<input class="in" id="fT" value="${esc(l.title)}" placeholder="مثلاً: Lesson 4 – حرف Aa"></label>
+    ${DATA.stages.length?`<label class="f">المرحلة<select class="in" id="fS">${DATA.stages.map(s=>`<option value="${esc(s.id)}" ${s.id===l.stage?"selected":""}>${esc(s.name)}</option>`).join("")}</select></label>`
+      :`<label class="f">اسم المرحلة (هتتضاف تلقائي)<input class="in" id="fSN" placeholder="مثلاً: KG 1"></label>`}
+    <label class="f">السعر بالجنيه<input class="in" id="fP" type="number" min="0" inputmode="numeric" value="${esc(l.price)}"></label>
+    <label class="check"><input type="checkbox" id="fF" ${l.free?"checked":""}> درس مجاني (يفتح لأي حد من غير كود)</label>
+    <label class="f">إيموجي للدرس<input class="in" id="fE" value="${esc(l.emoji)}" maxlength="4" style="font-size:24px;width:90px"></label>
+    <div class="f">اللون</div><div class="swatches" id="fC">${COLORS.map((c,i)=>`<button type="button" style="--c:${c[0]}" data-i="${i}" aria-label="لون ${i+1}" aria-pressed="${c[0]===l.c}"></button>`).join("")}</div>
+    <label class="f">${isNew?"ملف الدرس (HTML)":"استبدال ملف الدرس (اختياري)"}<input class="in" id="fFile" type="file" accept=".html,.htm,text/html"></label>
+    ${isNew?"":`<p class="hint">لو استبدلت الملف، الطلاب اللي فتحوا الدرس قبل كده هيفضل مفتوح عندهم.</p>`}
+    <p class="err" id="fErr"></p><button class="btn primary block" type="button" id="fGo">حفظ الدرس</button>`);
+  $("#fC").querySelectorAll("button").forEach(b=>b.onclick=()=>{col=COLORS[+b.dataset.i];$("#fC").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b))});
+  $("#fGo").onclick=async()=>{
+    const title=$("#fT").value.trim(),file=$("#fFile").files[0],err=$("#fErr");
+    if(!title){err.textContent="اكتب اسم الدرس.";return}
+    if(isNew&&!file){err.textContent="اختار ملف الدرس بصيغة HTML.";return}
+    let stage=$("#fS")?$("#fS").value:"";
+    if(!$("#fS")){const n=$("#fSN").value.trim();if(!n){err.textContent="اكتب اسم المرحلة.";return}const s={id:uid("s"),name:n};DATA.stages.push(s);stage=s.id}
+    $("#fGo").disabled=true;$("#fGo").textContent="جاري الحفظ…";
+    try{
+      if(isNew){l={id:uid("l")};l.file="lessons/"+l.id+".enc";DATA.lessons.push(l)}
+      l.title=title;l.stage=stage;l.price=Math.max(0,parseInt(digits($("#fP").value))||0);
+      l.free=$("#fF").checked||l.price===0;l.emoji=$("#fE").value.trim()||"📘";l.c=col[0];l.d=col[1];
+      if(file){
+        const text=await file.text();
+        const K=ADMIN.v.keys[l.id]?unb64(ADMIN.v.keys[l.id]):rnd(32);ADMIN.v.keys[l.id]=b64(K);
+        PENDING[l.file]=await seal(K,TE.encode(text));DELETED.delete(l.file);l.size=file.size;l.at=Date.now();
+      }
+      if(l.free)l.fk=ADMIN.v.keys[l.id];else delete l.fk;
+      await saveVault();closeSheet();renderAll();toast('اتحفظ ✔ اضغط "نشر" عشان يظهر للطلاب.',5000);
+    }catch(e){err.textContent="ما قدرناش نقرا الملف. جرب ملف تاني.";$("#fGo").disabled=false;$("#fGo").textContent="حفظ الدرس"}
+  };
+}
+async function delLesson(l){
+  if(!confirm(`حذف "${l.title}"؟ الطلاب مش هيقدروا يفتحوه تاني.`))return;
+  DATA.lessons=DATA.lessons.filter(x=>x!==l);delete PENDING[l.file];DELETED.add(l.file);delete ADMIN.v.keys[l.id];
+  await saveVault();renderAll();
+}
+
+/* ---------- stages tab ---------- */
+function tabStages(){
+  const P=$("#apanel");
+  P.innerHTML=`<div class="box"><h3>المراحل التعليمية</h3><p class="hint" style="margin-top:0">زي: KG 1، KG 2، أولى ابتدائي… الطالب بيختار المرحلة من فوق الدروس.</p>
+    ${DATA.stages.map((s,i)=>{const n=DATA.lessons.filter(l=>l.stage===s.id).length;return `<div class="item">
+      <span class="ib"><input class="in" data-r="${s.id}" value="${esc(s.name)}" aria-label="اسم المرحلة"><small>${n} درس</small></span>
+      <span class="acts"><button class="btn sm" type="button" data-up="${i}" ${i?"":"disabled"} aria-label="لفوق">▲</button><button class="btn sm" type="button" data-dn="${i}" ${i<DATA.stages.length-1?"":"disabled"} aria-label="لتحت">▼</button><button class="btn sm danger" type="button" data-del="${s.id}">حذف</button></span></div>`}).join("")}
+    <div class="item"><span class="ib"><input class="in" id="sNew" placeholder="اسم مرحلة جديدة"></span><span class="acts"><button class="btn sm primary" type="button" id="sAdd">إضافة</button></span></div></div>`;
+  const add=()=>{const n=$("#sNew").value.trim();if(!n)return;DATA.stages.push({id:uid("s"),name:n});markDirty();renderAll()};
+  $("#sAdd").onclick=add;$("#sNew").onkeydown=e=>{if(e.key==="Enter")add()};
+  P.querySelectorAll("[data-r]").forEach(i=>i.onchange=()=>{const s=DATA.stages.find(x=>x.id===i.dataset.r);if(i.value.trim()){s.name=i.value.trim();markDirty();renderStages();renderLessons()}});
+  const mv=(i,d)=>{const a=DATA.stages;[a[i],a[i+d]]=[a[i+d],a[i]];markDirty();renderAll()};
+  P.querySelectorAll("[data-up]").forEach(b=>b.onclick=()=>mv(+b.dataset.up,-1));
+  P.querySelectorAll("[data-dn]").forEach(b=>b.onclick=()=>mv(+b.dataset.dn,1));
+  P.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{const id=b.dataset.del;
+    if(DATA.lessons.some(l=>l.stage===id)){toast("انقل أو احذف دروس المرحلة دي الأول.");return}
+    DATA.stages=DATA.stages.filter(s=>s.id!==id);markDirty();renderAll()});
+}
+
+/* ---------- codes tab ---------- */
+let LAST_CODES=[];
+function codeMsg(r){const site=location.href.split("#")[0].split("?")[0];return `أهلاً${r.student?" "+r.student:""} 👋\nكود تفعيل ${r.label}:\n${fmtCode(r.code)}\n\nافتح الرابط من نفس الموبايل اللي بعت منه الطلب واضغط "عندي كود تفعيل":\n${site}\n\n🔐 الكود ده بيشتغل على الجهاز ده بس${r.dev?" ("+r.dev+")":""}.`}
+function tabCodes(){
+  const P=$("#apanel"),paid=DATA.lessons.filter(l=>!l.free);
+  const opts=(paid.length?`<optgroup label="درس واحد">${paid.map(l=>`<option value="l:${l.id}">${esc(l.title)}</option>`).join("")}</optgroup>`:"")+
+    (DATA.stages.length?`<optgroup label="كل دروس مرحلة">${DATA.stages.map(s=>`<option value="s:${s.id}">كل دروس ${esc(s.name)}</option>`).join("")}</optgroup>`:"");
+  const recs=ADMIN.v.codes;
+  P.innerHTML=`<div class="box"><h3>كود جديد لطالب دفع</h3>
+    <p class="hint" style="margin-top:0">لما يوصلك طلب على واتساب واتأكدت من التحويل، الصق الرسالة هنا. الكود هيشتغل على جهاز الطالب ده بس.</p>
+    ${paid.length?`<label class="f">الصق رسالة الطلب كلها من واتساب (البيانات هتتملي لوحدها)<textarea class="in" id="gPaste" rows="3" dir="auto"></textarea></label>
+    <label class="f">الكود يفتح<select class="in" id="gT">${opts}</select></label>
+    <label class="f">اسم الطالب<input class="in" id="gN"></label>
+    <label class="f">رقم ولي الأمر (واتساب)<input class="in" id="gP" type="tel" dir="ltr"></label>
+    <label class="f">كود جهاز الطالب (بيبدأ بـ #MF)<input class="in" id="gD" dir="ltr" autocomplete="off"></label>
+    <p class="hint" id="gDi"></p>
+    <label class="f">ملاحظة (رقم الطلب، طريقة الدفع…)<input class="in" id="gNote"></label>
+    <p class="err" id="gErr"></p><button class="btn primary block" type="button" id="gGo">اعمل الكود لجهاز الطالب</button>
+    <div id="gOut"></div>`:`<p class="hint">ضيف درس مدفوع الأول من تبويب الدروس.</p>`}</div>
+    <div class="box"><h3>الطلاب والأكواد (${recs.length})</h3>
+    ${recs.length?`<input class="in" id="gQ" placeholder="دوّر باسم الطالب أو الرقم أو الكود">`:""}
+    <div id="gList"></div></div>`;
+  if(paid.length){$("#gGo").onclick=genCodes;showNewCodes();
+    $("#gPaste").oninput=()=>{const o=parseReq($("#gPaste").value);
+      if(o.name)$("#gN").value=o.name;if(o.phone)$("#gP").value=o.phone;if(o.pub)$("#gD").value=o.pub;
+      if(o.rid||o.method)$("#gNote").value=[o.rid,o.method].filter(Boolean).join(" – ");
+      if(o.lesson&&[...$("#gT").options].some(x=>x.value==="l:"+o.lesson))$("#gT").value="l:"+o.lesson;showDev()};
+    $("#gD").oninput=showDev}
+  const q=$("#gQ");if(q)q.oninput=()=>listCodes(q.value);listCodes("");
+}
+function parseReq(t){
+  const o={},m=t.match(/#MF\|([\w-]*)\|([A-Za-z0-9_-]{80,})/);if(m){o.lesson=m[1];o.pub=m[2]}
+  const g=re=>{const x=t.match(re);return x?x[1].trim():""};
+  o.name=g(/اسم الطالب:\s*(.+)/);o.phone=g(/رقم ولي الأمر:\s*(.+)/);o.rid=g(/رقم الطلب:\s*(.+)/);o.method=g(/طريقة الدفع:\s*(.+)/);return o;
+}
+const cleanPub=v=>{const m=String(v).match(/([A-Za-z0-9_-]{80,})/);return m?m[1]:""};
+async function showDev(){const p=cleanPub($("#gD").value),el=$("#gDi");if(!p){el.textContent="";return}
+  try{await ecImport(p);el.style.color="var(--ok)";el.textContent="✔ رقم الجهاز: "+await shortId(p)}catch(e){el.style.color="var(--berry)";el.textContent="كود الجهاز ناقص أو غلط. انسخ الرسالة كلها تاني."}}
+function codeRow(r){
+  return `<div class="item ${r.revoked?"revoked":""}"><span class="ib"><span class="code">${fmtCode(r.code)}</span><b>${esc(r.student||"بدون اسم")} ${r.phone?`<small dir="ltr">${esc(r.phone)}</small>`:""}</b>
+    <small>${r.dev?"📱 "+esc(r.dev)+" – ":""}${esc(r.label)} – ${new Date(r.at).toLocaleDateString("ar-EG")}${r.note?" – "+esc(r.note):""}${r.revoked?" – ملغي":""}</small></span>
+    ${r.revoked?"":`<span class="acts"><button class="btn sm" type="button" data-cp="${r.code}">نسخ</button>${r.phone?`<button class="btn sm wa" type="button" data-wa="${r.code}">واتساب</button>`:""}<button class="btn sm danger" type="button" data-rv="${r.code}">إلغاء</button></span>`}</div>`;
+}
+function bindCodeRows(el){
+  const find=c=>ADMIN.v.codes.find(r=>r.code===c);
+  el.querySelectorAll("[data-cp]").forEach(b=>b.onclick=()=>copy(codeMsg(find(b.dataset.cp))));
+  el.querySelectorAll("[data-wa]").forEach(b=>b.onclick=()=>{const r=find(b.dataset.wa);window.open("https://wa.me/"+waNum(r.phone)+"?text="+encodeURIComponent(codeMsg(r)),"_blank")});
+  el.querySelectorAll("[data-rv]").forEach(b=>b.onclick=async()=>{const r=find(b.dataset.rv);
+    if(!confirm("إلغاء الكود؟ محدش هيقدر يستخدمه بعد النشر. (اللي فعّله قبل كده هيفضل الدرس مفتوح عنده)"))return;
+    delete DATA.codes[r.id];r.revoked=true;await saveVault();renderAdmin()});
+}
+function listCodes(q){
+  q=digits(q).trim().toUpperCase();const qc=normCode(q);
+  const rs=ADMIN.v.codes.filter(r=>!q||(r.student||"").toUpperCase().includes(q)||(r.phone||"").includes(q)||(qc&&r.code.includes(qc))||(r.note||"").toUpperCase().includes(q));
+  const el=$("#gList");el.innerHTML=rs.length?rs.slice(0,200).map(codeRow).join(""):`<p class="hint">${ADMIN.v.codes.length?"مفيش نتايج.":"لسه ما عملتش أكواد."}</p>`;bindCodeRows(el);
+}
+function showNewCodes(){
+  const o=$("#gOut");if(!o||!LAST_CODES.length)return;
+  const rs=LAST_CODES.map(c=>ADMIN.v.codes.find(r=>r.code===c)).filter(Boolean);
+  o.innerHTML=`<div class="newcodes"><b>الأكواد الجديدة ✔</b><p class="hint" style="margin-top:0">اضغط "نشر" فوق عشان الكود يشتغل عند الطالب.</p>${rs.map(codeRow).join("")}</div>`;bindCodeRows(o);
+}
+async function genCodes(){
+  const t=$("#gT").value,err=$("#gErr"),pub=cleanPub($("#gD").value);
+  if(!pub){err.textContent="حط كود جهاز الطالب (موجود في آخر رسالة الطلب).";return}
+  try{await ecImport(pub)}catch(e){err.textContent="كود الجهاز غلط. انسخ رسالة الطلب كلها تاني.";return}
+  let ids,label;
+  if(t.startsWith("l:")){const l=DATA.lessons.find(x=>x.id===t.slice(2));ids=[l.id];label="درس "+l.title}
+  else{const s=t.slice(2);ids=DATA.lessons.filter(l=>l.stage===s&&!l.free).map(l=>l.id);label="كل دروس "+stageName(s)}
+  ids=ids.filter(i=>ADMIN.v.keys[i]);
+  if(!ids.length){err.textContent="المرحلة دي مفيهاش دروس مدفوعة.";return}
+  err.textContent="";const btn=$("#gGo");btn.disabled=true;
+  const map={};ids.forEach(i=>map[i]=ADMIN.v.keys[i]);
+  const base={ids,label,student:$("#gN").value.trim(),phone:$("#gP").value.trim(),note:$("#gNote").value.trim(),dev:await shortId(pub)};
+  btn.textContent="جاري العمل…";
+  const {code,id,entry}=await makeDeviceCode(pub,map);
+  DATA.codes[id]=entry;
+  ADMIN.v.codes.unshift(Object.assign({code,id,at:Date.now()},base));LAST_CODES=[code];
+  await saveVault();btn.disabled=false;btn.textContent="اعمل الكود";
+  renderAdmin();
+}
+
+/* ---------- settings tab ---------- */
+function tabSettings(){
+  const t=DATA.teacher,g=ghCfg(),P=$("#apanel");
+  const fld=(k,label,attrs="")=>`<label class="f">${label}<input class="in" data-k="${k}" value="${esc(t[k])}" ${attrs}></label>`;
+  P.innerHTML=`
+  <div class="box"><h3>بيانات المدرس</h3>
+    <div class="photoRow"><img src="${avatarSrc()}" alt=""><div><button class="btn" type="button" id="phBtn">تغيير الصورة</button><input type="file" id="phIn" accept="image/*" hidden><p class="hint">الطالب بيشوفها فوق. الضغط عليها بيفتح لوحة المدرس.</p></div></div>
+    ${fld("name","الاسم")}${fld("title","المادة أو وصف قصير","placeholder='مثلاً: English – Phonics'")}
+    ${fld("wa","رقم واتساب اللي هتوصله الطلبات","type='tel' dir='ltr' placeholder='01xxxxxxxxx'")}</div>
+  <div class="box"><h3>طرق الدفع</h3>
+    ${fld("instapay","إنستاباي (العنوان أو الرقم)","dir='ltr' placeholder='name@instapay'")}
+    ${fld("instapayLink","رابط الدفع بإنستاباي (اختياري)","dir='ltr' placeholder='https://ipn.eg/S/...'")}
+    ${fld("vcash","رقم فودافون كاش","type='tel' dir='ltr'")}
+    ${fld("note","ملاحظة تظهر للطالب (اختياري)")}</div>
+  <div class="box"><h3>النشر على GitHub</h3>
+    <p class="hint" style="margin-top:0">لو ربطت حسابك، زرار "نشر" بيرفع الدروس والتعديلات على الموقع مباشرة. البيانات دي بتتحفظ على جهازك بس.</p>
+    <label class="f">اسم الحساب (owner)<input class="in" id="ghO" dir="ltr" value="${esc(g.owner)}"></label>
+    <label class="f">اسم المستودع (repo)<input class="in" id="ghR" dir="ltr" value="${esc(g.repo)}"></label>
+    <label class="f">الفرع (branch)<input class="in" id="ghB" dir="ltr" value="${esc(g.branch||"main")}"></label>
+    <label class="f">التوكن (Personal access token)<input class="in" id="ghT" type="password" dir="ltr" value="${esc(g.token)}" autocomplete="off"></label>
+    <p class="err" id="ghE"></p>
+    <div class="acts" style="justify-content:flex-start"><button class="btn primary" type="button" id="ghSave">حفظ واختبار</button><button class="btn" type="button" id="dlBtn">تحميل الملفات بدل النشر</button></div></div>
+  <div class="box"><h3>تغيير كلمة السر</h3>
+    <label class="f">كلمة السر الجديدة<input class="in" type="password" id="np1" autocomplete="new-password"></label>
+    <label class="f">اكتبها تاني<input class="in" type="password" id="np2" autocomplete="new-password"></label>
+    <p class="err" id="npE"></p><button class="btn" type="button" id="npGo">تغيير</button></div>`;
+  P.querySelectorAll("[data-k]").forEach(i=>i.onchange=()=>{DATA.teacher[i.dataset.k]=i.value.trim();markDirty();renderHero()});
+  $("#phBtn").onclick=()=>$("#phIn").click();
+  $("#phIn").onchange=async()=>{const f=$("#phIn").files[0];if(!f)return;try{DATA.teacher.photo=await squareImage(f,360);markDirty();renderHero();tabSettings()}catch(e){toast("الصورة ما اتقرتش. جرب صورة تانية.")}};
+  $("#ghSave").onclick=async()=>{
+    const c={owner:$("#ghO").value.trim(),repo:$("#ghR").value.trim(),branch:$("#ghB").value.trim()||"main",token:$("#ghT").value.trim()};LS.set("mf_gh",c);
+    const e=$("#ghE");e.style.color="";e.textContent="جاري الاختبار…";
+    try{const r=await fetch(`https://api.github.com/repos/${c.owner}/${c.repo}`,{headers:ghHead(c)});
+      if(!r.ok)throw new Error(ghErr(r.status));const j=await r.json();
+      if(j.permissions&&!j.permissions.push)throw new Error("التوكن مالوش صلاحية كتابة على المستودع ده.");
+      e.style.color="var(--ok)";e.textContent="✔ الربط شغال.";
+    }catch(x){e.textContent=x.message||"ما قدرناش نوصل لـ GitHub."}};
+  $("#dlBtn").onclick=downloadAll;
+  $("#npGo").onclick=async()=>{const a=$("#np1").value,b=$("#np2").value,e=$("#npE");
+    if(a.length<6){e.textContent="6 حروف على الأقل.";return}if(a!==b){e.textContent="الكلمتين مش زي بعض.";return}
+    const salt=rnd(16);ADMIN.key=await pbkdf2(a,salt,200000,256);ADMIN.salt=b64(salt);await saveVault();
+    e.style.color="var(--ok)";e.textContent='✔ اتغيرت. اضغط "نشر" عشان تتحفظ.';$("#np1").value=$("#np2").value=""};
+}
+function squareImage(file,size){return new Promise((res,rej)=>{const img=new Image();img.onload=()=>{const c=document.createElement("canvas");c.width=c.height=size;const s=Math.min(img.width,img.height);
+  c.getContext("2d").drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,size,size);URL.revokeObjectURL(img.src);res(c.toDataURL("image/jpeg",.85))};img.onerror=rej;img.src=URL.createObjectURL(file)})}
+
+/* ---------- publish ---------- */
+function ghCfg(){
+  const g=LS.get("mf_gh",{});
+  if(!g.owner&&/\.github\.io$/.test(location.hostname)){g.owner=location.hostname.split(".")[0];const p=location.pathname.split("/").filter(Boolean)[0];g.repo=p&&!p.includes(".")?p:location.hostname}
+  return g;
+}
+const ghHead=g=>({Authorization:"Bearer "+g.token,Accept:"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"});
+function ghErr(s){return s===401?"التوكن غلط أو انتهت صلاحيته.":s===403?"التوكن مالوش صلاحية، أو GitHub موقف الطلبات مؤقتاً.":s===404?"الحساب أو المستودع أو الفرع مش موجود، أو التوكن مش متاح له المستودع ده.":s===409||s===422?"في تعارض في الملفات. جرب تنشر تاني.":"GitHub رجّع خطأ ("+s+")."}
+async function ghSha(g,path){const r=await fetch(`https://api.github.com/repos/${g.owner}/${g.repo}/contents/${path}?ref=${encodeURIComponent(g.branch||"main")}&t=${Date.now()}`,{headers:ghHead(g),cache:"no-store"});
+  if(r.status===404)return null;if(!r.ok)throw new Error(ghErr(r.status));return (await r.json()).sha}
+async function ghPut(g,path,b64content){const sha=await ghSha(g,path);
+  const r=await fetch(`https://api.github.com/repos/${g.owner}/${g.repo}/contents/${path}`,{method:"PUT",headers:ghHead(g),body:JSON.stringify(Object.assign({message:"تحديث: "+path,content:b64content,branch:g.branch||"main"},sha?{sha}:{}))});
+  if(!r.ok)throw new Error(ghErr(r.status))}
+async function ghDel(g,path){const sha=await ghSha(g,path);if(!sha)return;
+  const r=await fetch(`https://api.github.com/repos/${g.owner}/${g.repo}/contents/${path}`,{method:"DELETE",headers:ghHead(g),body:JSON.stringify({message:"حذف: "+path,sha,branch:g.branch||"main"})});
+  if(!r.ok&&r.status!==404)throw new Error(ghErr(r.status))}
+const dataJson=()=>{DATA.updated=Date.now();return JSON.stringify(DATA)};
+async function publish(){
+  const g=LS.get("mf_gh",{});
+  if(!g.token||!g.owner||!g.repo){
+    sheet("النشر",`<p>عشان النشر يبقى بضغطة واحدة، اربط GitHub من <b>الإعدادات</b>.</p><p class="hint">أو حمّل الملفات وارفعها بنفسك على المستودع: <span dir="ltr">data.json</span> في الفولدر الرئيسي، وملفات <span dir="ltr">.enc</span> جوه فولدر <span dir="ltr">lessons</span>.</p>
+      <div class="acts" style="justify-content:flex-start;margin-top:12px"><button class="btn primary" type="button" id="goSet">افتح الإعدادات</button><button class="btn" type="button" id="goDl">تحميل الملفات</button></div>`);
+    $("#goSet").onclick=()=>{closeSheet();TAB="settings";renderAdmin()};$("#goDl").onclick=()=>{closeSheet();downloadAll()};return;
+  }
+  const btn=$("#pubBtn");btn.disabled=true;const files=Object.keys(PENDING),dels=[...DELETED],total=files.length+dels.length+1;let i=0;
+  try{
+    for(const p of files){toast(`جاري الرفع ${++i} من ${total}…`,60000);await ghPut(g,p,btoa(PENDING[p]));delete PENDING[p]}
+    for(const p of dels){toast(`جاري الحذف ${++i} من ${total}…`,60000);await ghDel(g,p);DELETED.delete(p)}
+    toast(`جاري الرفع ${++i} من ${total}…`,60000);await ghPut(g,"data.json",b64(TE.encode(dataJson())));DIRTY=false;
+    toast("اتنشر ✔ التحديث هيظهر للطلاب خلال دقيقة أو اتنين.",6000);
+  }catch(e){toast("النشر وقف: "+(e.message||"مشكلة في النت")+" الملفات اللي اترفعت اتحفظت، اضغط نشر تاني.",8000)}
+  updatePub();if(!$("#admin").hidden)renderAdmin();
+}
+function dl(name,text){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type:"application/octet-stream"}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000)}
+function downloadAll(){
+  const files=Object.keys(PENDING);
+  files.forEach((p,i)=>setTimeout(()=>dl(p.split("/").pop(),PENDING[p]),i*500));
+  setTimeout(()=>dl("data.json",dataJson()),files.length*500);
+  sheet("الملفات اتحملت",`<p>ارفعهم على المستودع في GitHub:</p><p><span dir="ltr">data.json</span> ← الفولدر الرئيسي (جنب index.html)</p>${files.length?`<p>${files.map(p=>`<span dir="ltr">${esc(p.split("/").pop())}</span>`).join("، ")} ← جوه فولدر <span dir="ltr">lessons</span></p>`:""}${DELETED.size?`<p>واحذف من فولدر lessons: <span dir="ltr">${[...DELETED].map(p=>esc(p.split("/").pop())).join("، ")}</span></p>`:""}<p class="hint">بعد ما ترفعهم اضغط "تم" عشان نصفّر عداد النشر.</p><button class="btn primary block" type="button" id="dlDone">تم</button>`);
+  $("#dlDone").onclick=()=>{PENDING={};DELETED.clear();DIRTY=false;updatePub();closeSheet()};
+}
+
+/* ================= boot ================= */
+(async function(){
+  try{await getDevice()}catch(e){}
+  if("serviceWorker" in navigator&&location.protocol==="https:")navigator.serviceWorker.register("sw.js").catch(()=>{});
+  try{const r=await fetch("data.json?t="+Date.now(),{cache:"no-store"});if(r.ok){const d=await r.json();DATA=Object.assign(DEF(),d);DATA.teacher=Object.assign(DEF().teacher,d.teacher||{})}}catch(e){}
+  renderAll();
+  if(DEV_RESET)toast("بيانات المتصفح اتمسحت فالدروس اتقفلت. اطلب كود جديد من المستر.",7000);
+})();
+</script>
+</body>
+</html>
